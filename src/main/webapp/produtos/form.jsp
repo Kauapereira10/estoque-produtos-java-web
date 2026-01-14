@@ -7,7 +7,7 @@
 <title>Adicionar Produto</title>
 </head>
 <body>
-	table
+	
 	
 </body>
 </html>

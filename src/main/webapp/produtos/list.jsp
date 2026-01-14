@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${Produto produ }</h1>
+	
 </body>
 </html>
