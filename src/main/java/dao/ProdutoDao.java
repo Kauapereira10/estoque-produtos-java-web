@@ -1,18 +1,19 @@
-package com.kaua.estoque.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kaua.estoque.model.Produto;
-import com.kaua.estoque.util.ConnectionFactory;
+import model.Produto;
+import util.ConnectionFactory;
 
 public class ProdutoDao {
 
-	public void save(Produto produto) {
+	public boolean inserir(Produto produto) {
 		String sql = "INSERT INTO produto (nome, descricao, preco, quantidade, data_cadastro, ativo) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try (Connection con = ConnectionFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -24,10 +25,17 @@ public class ProdutoDao {
 			stmt.setTimestamp(5, Timestamp.valueOf(produto.getDataCadastro()));
 			stmt.setBoolean(6, produto.isAtivo());
 
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
+			int linhasAfetadas = stmt.executeUpdate();
+			
+			if(linhasAfetadas > 0) {
+				return true;
+			}
+					
+		} catch (SQLException ex) {
+			System.out.println(ex);
+			ex.printStackTrace();
 		}
+		return false;
 	}
 
 	public void update(Produto produto) {
@@ -55,9 +63,9 @@ public class ProdutoDao {
 		}
 	}
 
-	public List<Produto> findAll() {
+	public List<Produto> listar() {
 		List<Produto> lista = new ArrayList<>();
-		String sql = "SELECT * FROM produto Where ativo = true ORDER BY nome";
+		String sql = "SELECT * FROM produto";
 		try (Connection con = ConnectionFactory.getConnection();
 				PreparedStatement stmt = con.prepareStatement(sql);
 				ResultSet rs = stmt.executeQuery()) {

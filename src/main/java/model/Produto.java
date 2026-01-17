@@ -1,4 +1,4 @@
-package com.kaua.estoque.model;
+package model;
 
 import java.time.LocalDateTime;
 
@@ -17,8 +17,8 @@ public class Produto {
 	public Produto(String nome, String descricao, double preco, int quantidade) {
 		this.nome = nome;
 		this.descricao = descricao;
-		this.preco = preco >= 0 ? preco : 0;
-		this.quantidade = quantidade >= 0 ? quantidade : 0;
+		setPreco(preco);
+		setQuantidade(quantidade);
 		this.dataCadastro = LocalDateTime.now();
 		this.ativo = true;
 	}
@@ -46,13 +46,13 @@ public class Produto {
 		return preco;
 	}
 	public void setPreco(double preco) {
-		this.preco = preco >= 0 ? preco : 0;
+		this.preco = preco;;
 	}
 	public int getQuantidade() {
 		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade >= 0 ? quantidade : 0;
+		this.quantidade = quantidade;
 	}
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
@@ -66,6 +66,13 @@ public class Produto {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
+				+ ", quantidade=" + quantidade + ", dataCadastro=" + dataCadastro + ", ativo=" + ativo + "]";
+	}
+	
 	
 	
 }

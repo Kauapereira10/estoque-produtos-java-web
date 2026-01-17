@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Sistema de Estoque</title>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 
 </head>
 <body>
-	<header>
-		<h1>Sistema de Estoque</h1>
-	</header>
+    <header>
+        <h1>Sistema de Estoque</h1>
+    </header>
 
-	<nav>
-		<a href="produtos" target="produtosFrame">Lista de Produtos</a> 
-		<a href="produtos?action=form" target="produtosFrame">Adicionar Produtos</a>
-	</nav>
-	<main>
-		<h1>Bem-vindo ao Sistema de Estoque</h1>
-		<iframe src="apresentacao.html" name="produtosFrame"></iframe>
-	</main>
+    <nav>
+        <a href="produtos/listar" target="produtosFrame">Lista de Produtos</a>
+        <a href="produtos/cadastro" target="produtosFrame">Cadastro de Produto</a>
+    </nav>
+
+    <main>
+        <h2>Bem-vindo ao Sistema de Estoque</h2>
+        <iframe src="apresentacao.html" name="produtosFrame"></iframe>
+    </main>
 </body>
 </html>
