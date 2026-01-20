@@ -10,6 +10,7 @@ public class Produto {
 	private int quantidade;
 	private LocalDateTime dataCadastro;
 	private boolean ativo;
+	private String dataFormatada;
 	
 	
 	public Produto() {}	
@@ -20,7 +21,7 @@ public class Produto {
 		setPreco(preco);
 		setQuantidade(quantidade);
 		this.dataCadastro = LocalDateTime.now();
-		this.ativo = true;
+		setAtivo(ativo);
 	}
 
 
@@ -64,13 +65,26 @@ public class Produto {
 		return ativo;
 	}
 	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+		if(getQuantidade() <= 0) {
+			this.ativo = false;
+		}else {
+			this.ativo = true;
+		}
+		
 	}
 
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
 				+ ", quantidade=" + quantidade + ", dataCadastro=" + dataCadastro + ", ativo=" + ativo + "]";
+	}
+
+	public String getDataFormatada() {
+		return dataFormatada;
+	}
+
+	public void setDataFormatada(String dataFormatada) {
+		this.dataFormatada = dataFormatada;
 	}
 	
 	

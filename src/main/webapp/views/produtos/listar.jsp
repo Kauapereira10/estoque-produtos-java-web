@@ -19,18 +19,21 @@
        		<th>Descriçao</th>
        		<th>Preço</th>
        		<th>Quantidade</th>
-       		<th>Status</th>
+       		<th>Data de Cadastro</th>
+       		<th>Em Estoque</th>
+       		<th>Opcao</th>
        </tr>
        </thead>
        <tbody>
-       <c:forEach var="produto" items="${listar}">
+       <c:forEach var="produto" items="${listarProdutos}">
+       
        <tr>
        		<td>${produto.id}</td>
        		<td>${produto.nome}</td>
        		<td>${produto.descricao}</td>
        		<td>${produto.preco}</td>
        		<td>${produto.quantidade}</td>
-       		<td>${produto.dataCadastro}</td>
+       		<td>${produto.dataFormatada}</td>
        		<td>${produto.ativo}</td>
        		<td>
        			<a href="editar?id=${produto.id}">Editar</a>

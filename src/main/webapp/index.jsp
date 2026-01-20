@@ -13,7 +13,7 @@
     </header>
 
     <nav>
-        <a href="produtos/listar" target="produtosFrame">Lista de Produtos</a>
+        <a href="produtos/listarProdutos" target="produtosFrame">Lista de Produtos</a>
         <a href="produtos/cadastro" target="produtosFrame">Cadastro de Produto</a>
     </nav>
 

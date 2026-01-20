@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,19 +41,21 @@ public class ProdutoDao {
 		return false;
 	}
 
-	public void update(Produto produto) {
-		String sql = "UPDATE produto SET nome =?, descricao=?, preco =?, quantidade=? where id=? ";
+	public boolean update(Produto produto) {
+		String sql = "UPDATE produto SET nome =?, descricao=?, preco =?, quantidade=?, ativo = ? where id=? ";
 		try (Connection con = ConnectionFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
 			stmt.setString(1, produto.getNome());
 			stmt.setString(2, produto.getDescricao());
 			stmt.setDouble(3, produto.getPreco());
 			stmt.setInt(4, produto.getQuantidade());
-			stmt.setInt(5, produto.getId());
+			stmt.setBoolean(5, produto.isAtivo());
+			stmt.setInt(6, produto.getId());
 
-			stmt.executeUpdate();
+			return stmt.executeUpdate() > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	public void desativar(int id) {
@@ -63,7 +68,8 @@ public class ProdutoDao {
 		}
 	}
 
-	public List<Produto> listar() {
+	public List<Produto> listarProdutos() {		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		List<Produto> lista = new ArrayList<>();
 		String sql = "SELECT * FROM produto";
 		try (Connection con = ConnectionFactory.getConnection();
@@ -76,7 +82,9 @@ public class ProdutoDao {
 				p.setDescricao(rs.getString("descricao"));
 				p.setPreco(rs.getDouble("preco"));
 				p.setQuantidade(rs.getInt("quantidade"));
-				p.setDataCadastro(rs.getTimestamp("data_cadastro").toLocalDateTime());
+				LocalDateTime data = rs.getTimestamp("data_cadastro").toLocalDateTime();
+				p.setDataCadastro(data);
+				p.setDataFormatada(data.format(formatter));
 				p.setAtivo(rs.getBoolean("ativo"));
 
 				lista.add(p);
