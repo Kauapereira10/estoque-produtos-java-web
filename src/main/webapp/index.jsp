@@ -11,15 +11,14 @@
     <header>
         <h1>Sistema de Estoque</h1>
     </header>
-
-    <nav>
-        <a href="produtos/listarProdutos" target="produtosFrame">Lista de Produtos</a>
-        <a href="produtos/cadastro" target="produtosFrame">Cadastro de Produto</a>
-    </nav>
-
+    
+	<%@ include file="../includes/navbar.jsp"%>
+	
     <main>
         <h2>Bem-vindo ao Sistema de Estoque</h2>
         <iframe src="apresentacao.html" name="produtosFrame"></iframe>
     </main>
+    
+    <%@ include file="../includes/footer.jsp"%>
 </body>
 </html>

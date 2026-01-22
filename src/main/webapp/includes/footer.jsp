@@ -8,5 +8,11 @@
 </head>
 <body>
 
+	<footer>
+	
+		<p>Sistema CRUD desenvolvido por <a href="https://github.com/Kauapereira10">Kauã Pereira</a></p>
+		
+	</footer>
+
 </body>
 </html>
