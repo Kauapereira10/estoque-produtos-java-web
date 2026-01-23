@@ -7,22 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Lista de Produtos</title>
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
 </head>
 <body>
-	<h2>Lista de Produtos</h2>
+	<h2>List Products</h2>
 
 	<table border="1" cellpadding="5">
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Nome do Produto</th>
-				<th>Descriçao</th>
-				<th>Preço</th>
-				<th>Quantidade</th>
-				<th>Data de Cadastro</th>
-				<th>Em Estoque</th>
-				<th>Opcao</th>
+				<th>Name Product</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Date Created</th>
+				<th>In Stock</th>
+				<th>option</th>
 			</tr>
 		</thead>
 		<tbody>

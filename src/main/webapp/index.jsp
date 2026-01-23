@@ -3,20 +3,19 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Estoque</title>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-
+    <title>Inventory System</title>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
 </head>
 <body>
     <header>
-        <h1>Sistema de Estoque</h1>
+        <h1>Inventory System</h1>
     </header>
     
-	<%@ include file="../includes/navbar.jsp"%>
+	<%@ include file="../includes/navbar.jsp"%>	
 	
     <main>
-        <h2>Bem-vindo ao Sistema de Estoque</h2>
-        <iframe src="apresentacao.html" name="produtosFrame"></iframe>
+        <h2>Welcome to the Inventory System</h2>
+        <iframe src="presentation.html" name="produtosFrame"></iframe>
     </main>
     
     <%@ include file="../includes/footer.jsp"%>

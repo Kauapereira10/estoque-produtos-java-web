@@ -20,7 +20,7 @@ public class Product {
 		this.price = price;
 		this.quantity = quantity;
 		this.createdAt = LocalDateTime.now();
-		setInStock(quantity > 0);
+		setInStock(inStock);;
 	}
 
 	public int getId() {
@@ -76,7 +76,9 @@ public class Product {
 	}
 
 	public void setInStock(boolean inStock) {
-		this.inStock = inStock;
+		if(this.getQuantity() > 0) {
+			this.inStock = true;
+		}
 	}
 
 	public String getFormattedDate() {
