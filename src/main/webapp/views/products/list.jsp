@@ -6,23 +6,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lista de Produtos</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
+<title>Produtos | Sistema de Gestão de Estoque</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<h2>List Products</h2>
-
-	<table border="1" cellpadding="5">
+	
+	<h2>Produtos Cadastrados</h2>
+	<div class="table-container">
+   	<table border="1" cellpadding="5">
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Name Product</th>
-				<th>Description</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Date Created</th>
-				<th>In Stock</th>
-				<th>option</th>
+				<th>Nome do Produto</th>
+				<th>Categoria</th>
+				<th>Modelo</th>
+				<th>Preço</th>
+				<th>Quantidade</th>
+				<th>Data de Cadastro</th>
+				<th>Status</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,14 +33,15 @@
 				<tr>
 					<td>${product.id}</td>
 					<td>${product.name}</td>
-					<td>${product.description}</td>
+					<td>${product.category}</td>
+					<td>${product.model}</td>
 					<td>${product.price}</td>
 					<td>${product.quantity}</td>
 					<td>${product.formattedDate}</td>
 					<td>${product.inStock}</td>
 					<td>
-					<a href="${pageContext.request.contextPath}/products/edit?id=${product.id}">Edit</a>
-        			<a href="${pageContext.request.contextPath}/products/delete?id=${product.id}" onclick="return confirm('Do you want to delete this product?');">Delete</a>
+					<a href="${pageContext.request.contextPath}/products/edit?id=${product.id}">Editar</a>
+        			<a href="${pageContext.request.contextPath}/products/delete?id=${product.id}" onclick="return confirm('Deseja realmente excluir este produto?');">Excluir</a>
         			</td>
 				</tr>
 			</c:forEach>
@@ -48,5 +51,8 @@
 		<br />
 
 	</table>
+	</div>
+	
+	
 </body>
 </html>

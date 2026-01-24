@@ -3,19 +3,19 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Inventory System</title>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
+    <title>Sistema de Gestão de Estoque | Computadores</title>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Inventory System</h1>
+        <h1>Sistema de Gestão de Estoque</h1>
     </header>
     
 	<%@ include file="../includes/navbar.jsp"%>	
 	
     <main>
-        <h2>Welcome to the Inventory System</h2>
-        <iframe src="presentation.html" name="produtosFrame"></iframe>
+        <h2>Bem-vindo ao sistema de controle de estoque de computadores</h2>
+        <iframe src="apresentacao.html" name="produtosFrame" scrolling="no"></iframe>
     </main>
     
     <%@ include file="../includes/footer.jsp"%>
