@@ -15,7 +15,7 @@
 	
     <main>
         <h2>Bem-vindo ao sistema de controle de estoque de computadores</h2>
-        <iframe src="apresentacao.html" name="produtosFrame" scrolling="no"></iframe>
+        <iframe src="introduction.html" name="produtosFrame" scrolling="no"></iframe>
     </main>
     
     <%@ include file="../includes/footer.jsp"%>
