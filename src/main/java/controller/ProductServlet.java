@@ -105,14 +105,19 @@ public class ProductServlet extends HttpServlet {
 		try {
 			Product newProduct = new Product();
 			String nameProduct = request.getParameter("name");
-			String description = request.getParameter("description");
+			String category = request.getParameter("category");
+			String model = request.getParameter("model");
 			double price = Double.parseDouble(request.getParameter("price"));
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
-
-			if (nameProduct != null && price > 0 && quantity > 0) {
-				newProduct = new Product(nameProduct, description, price, quantity);
-				return productDao.save(newProduct);
-			}
+			
+			if (nameProduct == null || nameProduct.isBlank() || price <= 0 || quantity < 0) {
+	            return false;
+	        }
+			
+			newProduct = new Product(nameProduct, category, model, price, quantity);
+			newProduct.updateStock();
+			return productDao.save(newProduct);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -146,18 +151,25 @@ public class ProductServlet extends HttpServlet {
 		try {
 			int id = Integer.parseInt(request.getParameter("id"));
 
-			String nomeProduto = request.getParameter("name");
-			String descricao = request.getParameter("description");
-			double preco = Double.parseDouble(request.getParameter("price"));
-			int quantidade = Integer.parseInt(request.getParameter("quantity"));
+			String nameProduct = request.getParameter("name");
+			String category = request.getParameter("category");
+			String model = request.getParameter("model");
+			double price = Double.parseDouble(request.getParameter("price"));
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			
+			if(nameProduct == null || nameProduct.isBlank() || price <=0 || quantity <0) {
+				return false;
+			}
 			
 			Product updateProduto = new Product();
 			updateProduto.setId(id);
-			updateProduto.setName(nomeProduto);
-			updateProduto.setDescription(descricao);
-			updateProduto.setPrice(preco);
-			updateProduto.setQuantity(quantidade);
+			updateProduto.setName(nameProduct);
+			updateProduto.setCategory(category);
+			updateProduto.setModel(model);
+			updateProduto.setPrice(price);
+			updateProduto.setQuantity(quantity);
 			
+			updateProduto.updateStock();
 	        return productDao.update(updateProduto);
 		} catch (Exception e) {
 			e.printStackTrace();

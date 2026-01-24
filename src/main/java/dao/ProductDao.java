@@ -16,16 +16,17 @@ import util.ConnectionFactory;
 public class ProductDao {
 
 	public boolean save(Product product) {
-		String sql = "INSERT INTO product (name, description, price, quantity, created_at, in_stock) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO product (name, category, model, price, quantity, created_at, in_stock) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection con = ConnectionFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
 
 			stmt.setString(1, product.getName());
-			stmt.setString(2, product.getDescription());
-			stmt.setDouble(3, product.getPrice());
-			stmt.setInt(4, product.getQuantity());
-			stmt.setTimestamp(5, Timestamp.valueOf(product.getCreatedAt()));
-			stmt.setBoolean(6, product.isInStock());
+			stmt.setString(2, product.getCategory());
+			stmt.setString(3, product.getModel());
+			stmt.setDouble(4, product.getPrice());
+			stmt.setInt(5, product.getQuantity());
+			stmt.setTimestamp(6, Timestamp.valueOf(product.getCreatedAt()));
+			stmt.setBoolean(7, product.isInStock());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			
@@ -41,14 +42,15 @@ public class ProductDao {
 	}
 
 	public boolean update(Product product) {
-		String sql = "UPDATE product SET name =?, description=?, price =?, quantity=?, in_stock = ? where id=? ";
+		String sql = "UPDATE product SET name =?, category=?, model=?, price =?, quantity=?, in_stock = ? where id=? ";
 		try (Connection con = ConnectionFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
 			stmt.setString(1, product.getName());
-			stmt.setString(2, product.getDescription());
-			stmt.setDouble(3, product.getPrice());
-			stmt.setInt(4, product.getQuantity());
-			stmt.setBoolean(5, product.isInStock());
-			stmt.setInt(6, product.getId());
+			stmt.setString(2, product.getCategory());
+			stmt.setString(3, product.getModel());
+			stmt.setDouble(4, product.getPrice());
+			stmt.setInt(5, product.getQuantity());
+			stmt.setBoolean(6, product.isInStock());
+			stmt.setInt(7, product.getId());
 
 			return stmt.executeUpdate() > 0;
 		} catch (Exception e) {
@@ -78,7 +80,8 @@ public class ProductDao {
 				Product p = new Product();
 				p.setId(rs.getInt("id"));
 				p.setName(rs.getString("name"));
-				p.setDescription(rs.getString("description"));
+				p.setCategory(rs.getString("category"));
+				p.setModel(rs.getString("model"));
 				p.setPrice(rs.getDouble("price"));
 				p.setQuantity(rs.getInt("quantity"));
 				LocalDateTime data = rs.getTimestamp("created_at").toLocalDateTime();
@@ -105,7 +108,8 @@ public class ProductDao {
 	            	Product p = new Product();
 	                p.setId(rs.getInt("id"));
 	                p.setName(rs.getString("name"));
-	                p.setDescription(rs.getString("description"));
+	                p.setCategory(rs.getString("category"));
+	                p.setModel(rs.getString("model"));
 	                p.setPrice(rs.getDouble("price"));
 	                p.setQuantity(rs.getInt("quantity"));
 	                p.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());

@@ -5,22 +5,28 @@ import java.time.LocalDateTime;
 public class Product {
 	private int id;
 	private String name;
-	private String description;
+	private String category;
 	private double price;
 	private int quantity;
 	private LocalDateTime createdAt;
 	private boolean inStock;
 	private String formattedDate;
+	private String model;
 	
 	public Product() {}
 	
-	public Product(String name, String description, double price, int quantity) {
+	public Product(String name, String category,String model, double price, int quantity) {
 		this.name = name;
-		this.description = description;
+		this.category = category;
+		this.model = model;
 		this.price = price;
 		this.quantity = quantity;
 		this.createdAt = LocalDateTime.now();
-		setInStock(inStock);;
+		this.inStock = quantity > 0;
+	}
+	
+	public void updateStock() {
+		inStock = this.quantity > 0;
 	}
 
 	public int getId() {
@@ -39,12 +45,12 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public double getPrice() {
@@ -76,9 +82,8 @@ public class Product {
 	}
 
 	public void setInStock(boolean inStock) {
-		if(this.getQuantity() > 0) {
-			this.inStock = true;
-		}
+			this.inStock = inStock;
+
 	}
 
 	public String getFormattedDate() {
@@ -89,9 +94,17 @@ public class Product {
 		this.formattedDate = formattedDate;
 	}
 
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", descripition=" + description + ", price=" + price
+		return "Product [id=" + id + ", name=" + name + ", descripition=" + category + ", price=" + price
 				+ ", quantity=" + quantity + ", createdAt=" + createdAt + ", inStock=" + inStock + ", formattedDate="
 				+ formattedDate + "]";
 	}
