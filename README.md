@@ -2,7 +2,7 @@
 
 ---
 
-# 📦 Sistema de Gestão de Produtos e Estoque
+# 📦 Sistema de Gestão de Estoque | Computadores
 
 Este projeto é um **sistema web desenvolvido em Java** para **cadastro e controle de produtos e estoque**, utilizando **JSP, Servlets, JDBC e MySQL**, seguindo o padrão **MVC**.
 
@@ -16,7 +16,7 @@ O objetivo é praticar conceitos fundamentais de **Java Web** e criar um projeto
 * Implementar um CRUD completo
 * Aplicar o padrão MVC
 * Trabalhar com Java + Banco de Dados
-* Criar um projeto organizado para vagas de estágio/júnior
+* Criar um projeto organizado para vagas de estágio
 
 ---
 
@@ -37,8 +37,7 @@ O objetivo é praticar conceitos fundamentais de **Java Web** e criar um projeto
 * Cadastrar produtos
 * Listar produtos cadastrados
 * Editar informações do produto
-* Desativar produtos (não são excluídos do banco)
-* Buscar produtos por nome
+* Excluir produtos 
 * Exibir status de estoque (com ou sem estoque)
 
 ---
@@ -60,19 +59,19 @@ O projeto segue o padrão **MVC (Model–View–Controller)**.
 ```
 src/main/java
  ├── model
- │    └── Produto.java
+ │    └── Product.java
  │
  ├── dao
- │    └── ProdutoDAO.java
+ │    └── ProductDAO.java
  │
  ├── controller
- │    └── ProdutoServlet.java
+ │    └── ProductServlet.java
  │
  ├── util
  │    └── ConnectionFactory.java
  │
 src/main/webapp
- ├── produtos
+ ├── views/products
  │    ├── list.jsp
  │    └── form.jsp
  │
@@ -86,14 +85,15 @@ src/main/webapp
 ### Tabela `produto`
 
 ```sql
-CREATE TABLE produto (
+CREATE TABLE product (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  descricao TEXT,
-  preco DECIMAL(10,2) NOT NULL,
-  quantidade INT NOT NULL,
-  data_cadastro DATETIME,
-  ativo BOOLEAN
+  name VARCHAR(100) NOT NULL,
+  category VARCHAR(100) NOT NULL,
+  model VARCHAR(100) NOT NULL DEFAULT 'NAO INFORMADO',
+  price DECIMAL(10,2) NOT NULL,
+  quantity INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  in_stock BOOLEAN NOT NULL
 );
 ```
 
